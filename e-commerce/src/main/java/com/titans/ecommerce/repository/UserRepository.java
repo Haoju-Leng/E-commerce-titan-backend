@@ -2,8 +2,10 @@ package com.titans.ecommerce.repository;
 
 import com.titans.ecommerce.entity.User;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends PagingAndSortingRepository<User, Integer> {
+
 }
