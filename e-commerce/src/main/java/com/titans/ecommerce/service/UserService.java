@@ -17,7 +17,9 @@ public class UserService {
 
 
     public User register(String username, String password) {
-        User user = new User(username, passwordEncoder.encode(password));
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
         if (userRepository.findById(username).isPresent()) {
             return userRepository.findById(username).get();
         }

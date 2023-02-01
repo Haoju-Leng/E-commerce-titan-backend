@@ -6,22 +6,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "shippingaddress")
+public class ShippingAddress implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
-    @Column(unique = true)
-    private String username; // should be email id
-
-    private String password;
-
+    private int userId;
+    private String address;
+    private String city;
+    private String state;
+    private String zipcode;
 
 }
