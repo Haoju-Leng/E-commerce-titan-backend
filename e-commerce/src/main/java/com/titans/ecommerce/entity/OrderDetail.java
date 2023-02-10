@@ -30,4 +30,15 @@ public class OrderDetail {
 
     private double unitPrice;
 
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                "id=" + id +
+                ", order=" + order +
+                ", seller=" + seller +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                ", unitPrice=" + unitPrice +
+                '}';
+    }
 }

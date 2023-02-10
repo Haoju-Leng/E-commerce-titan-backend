@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
+
 
 @Getter
 @Setter
@@ -29,5 +31,16 @@ public class User {
     @OneToOne
     private Cart cart;
 
+    private Date registrationTime;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", state=" + state +
+                ", cart=" + cart +
+                '}';
+    }
 }

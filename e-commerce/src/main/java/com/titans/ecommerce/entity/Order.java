@@ -32,4 +32,19 @@ public class Order {
 
     private Timestamp timeStamp;
 
+    public enum State {incomplete, complete}
+    @Enumerated(EnumType.STRING)
+    private State state;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", buyer=" + buyer +
+                ", orderDetailList=" + orderDetailList +
+                ", totalAmount=" + totalAmount +
+                ", timeStamp=" + timeStamp +
+                ", state=" + state +
+                '}';
+    }
 }

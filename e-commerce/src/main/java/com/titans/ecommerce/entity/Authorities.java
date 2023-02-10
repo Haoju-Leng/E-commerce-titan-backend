@@ -23,4 +23,12 @@ public class Authorities {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
+    @Override
+    public String toString() {
+        return "Authorities{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", authority=" + authority +
+                '}';
+    }
 }

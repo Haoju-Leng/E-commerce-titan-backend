@@ -24,4 +24,14 @@ public class CartItem {
     private Product product;
 
     private int quantity;
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "id=" + id +
+                ", cart=" + cart +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

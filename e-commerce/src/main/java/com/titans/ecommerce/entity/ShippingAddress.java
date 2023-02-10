@@ -24,4 +24,15 @@ public class ShippingAddress implements Serializable {
     private String state;
     private String zipcode;
 
+    @Override
+    public String toString() {
+        return "ShippingAddress{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                '}';
+    }
 }

@@ -25,6 +25,12 @@ public class Cart {
     @OneToMany
     List<CartItem> cartItemList;
 
-
-
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "id=" + id +
+                ", user=" + user +
+                ", cartItemList=" + cartItemList +
+                '}';
+    }
 }
