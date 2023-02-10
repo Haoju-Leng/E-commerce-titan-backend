@@ -20,6 +20,9 @@ public class OrderDetail {
     @ManyToOne
     private Order order;
 
+    @ManyToOne
+    private User seller;
+
     @OneToOne
     private Product product;
 

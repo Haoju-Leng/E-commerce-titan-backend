@@ -22,8 +22,8 @@ public class Order {
     @ManyToOne
     private User buyer;
 
-    @ManyToOne
-    private User seller;
+    // an order may include multiple sellers, it's better to record the seller in an orderdetail object
+    // private User seller;
 
     @OneToMany
     private List<OrderDetail> orderDetailList;
