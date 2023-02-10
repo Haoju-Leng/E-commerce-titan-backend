@@ -6,28 +6,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User {
+public class Authorities {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(unique = true)
-    private String username; // should be email id
+    private int userId;
 
-    private String password;
-
-    public enum State {normal, banned, closed}
+    public enum Authority {user, admin, blocked}
     @Enumerated(EnumType.STRING)
-    private State state;
-
-    @OneToOne
-    private Cart cart;
-
+    private Authority authority;
 
 }

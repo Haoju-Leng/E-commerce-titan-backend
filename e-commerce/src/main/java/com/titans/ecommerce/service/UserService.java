@@ -20,15 +20,15 @@ public class UserService {
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
-        if (userRepository.findById(username).isPresent()) {
-            return userRepository.findById(username).get();
+        if (userRepository.findUserByUsername(username) != null) {
+            return userRepository.findUserByUsername(username);
         }
         userRepository.save(user);
         return user;
     }
 
     public User login(String username, String password) {
-        User user = userRepository.findById(username).orElse(null);
+        User user = userRepository.findUserByUsername(username);
         if (null != user && passwordEncoder.matches(password, user.getPassword())) {
             return user;
         }else {

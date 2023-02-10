@@ -6,28 +6,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(unique = true)
-    private String username; // should be email id
+    @ManyToOne
+    private User buyer;
 
-    private String password;
+    @ManyToOne
+    private User seller;
 
-    public enum State {normal, banned, closed}
-    @Enumerated(EnumType.STRING)
-    private State state;
+    @OneToMany
+    private List<OrderDetail> orderDetailList;
 
-    @OneToOne
-    private Cart cart;
+    private double totalAmount;
 
+    private Timestamp timeStamp;
 
 }

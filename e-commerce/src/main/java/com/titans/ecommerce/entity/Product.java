@@ -12,29 +12,28 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "category")
     private String productCategory;
 
-    @Column(name = "description")
     private String productDescription;
 
-    @Column(name = "manufacturer")
     private String productManufacturer;
 
-    @Column(name = "name")
     private String productName;
 
-    @Column(name = "price")
     private double productPrice;
 
-    @Column(name = "unit")
     private String unitStock;
+
+    private int sellerId;
+
+    public enum State {forSale, inTransaction, soldOut}
+    @Enumerated(EnumType.STRING)
+    private State state;
 
     @Override
     public String toString() {
@@ -46,6 +45,9 @@ public class Product {
                 ", productName='" + productName + '\'' +
                 ", productPrice=" + productPrice +
                 ", unitStock='" + unitStock + '\'' +
+                ", sellerId=" + sellerId +
+                ", state=" + state +
                 '}';
     }
 }
+

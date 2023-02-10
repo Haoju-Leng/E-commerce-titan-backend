@@ -13,7 +13,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "shippingaddress")
 public class ShippingAddress implements Serializable {
 
     @Id

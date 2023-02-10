@@ -6,28 +6,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User {
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(unique = true)
-    private String username; // should be email id
-
-    private String password;
-
-    public enum State {normal, banned, closed}
-    @Enumerated(EnumType.STRING)
-    private State state;
-
     @OneToOne
-    private Cart cart;
+    private User user;
+
+    @OneToMany
+    List<CartItem> cartItemList;
+
 
 
 }

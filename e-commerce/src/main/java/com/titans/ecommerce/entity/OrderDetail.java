@@ -6,28 +6,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User {
+public class OrderDetail {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(unique = true)
-    private String username; // should be email id
-
-    private String password;
-
-    public enum State {normal, banned, closed}
-    @Enumerated(EnumType.STRING)
-    private State state;
+    @ManyToOne
+    private Order order;
 
     @OneToOne
-    private Cart cart;
+    private Product product;
 
+    private int quantity;
+
+    private double unitPrice;
 
 }

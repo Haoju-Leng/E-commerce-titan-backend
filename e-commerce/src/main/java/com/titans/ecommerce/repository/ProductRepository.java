@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends PagingAndSortingRepository<Product, Integer> {
     Product findProductById(Integer id);
+    void save(Product product);
 }
