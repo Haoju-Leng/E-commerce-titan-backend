@@ -12,10 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class Product extends BaseEntity{
 
     private String productCategory;
 
@@ -35,19 +32,6 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private State state;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productCategory='" + productCategory + '\'' +
-                ", productDescription='" + productDescription + '\'' +
-                ", productManufacturer='" + productManufacturer + '\'' +
-                ", productName='" + productName + '\'' +
-                ", productPrice=" + productPrice +
-                ", unitStock='" + unitStock + '\'' +
-                ", sellerId=" + sellerId +
-                ", state=" + state +
-                '}';
-    }
+
 }
 

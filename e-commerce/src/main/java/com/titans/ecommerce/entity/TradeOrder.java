@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Getter
@@ -14,11 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
+public class TradeOrder extends BaseEntity {
     @ManyToOne
     private User buyer;
 
@@ -26,25 +21,11 @@ public class Order {
     // private User seller;
 
     @OneToMany
-    private List<OrderDetail> orderDetailList;
+    private List<TradeOrderDetail> tradeOrderDetailList;
 
     private double totalAmount;
-
-    private Timestamp timeStamp;
-
     public enum State {incomplete, complete}
     @Enumerated(EnumType.STRING)
     private State state;
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", buyer=" + buyer +
-                ", orderDetailList=" + orderDetailList +
-                ", totalAmount=" + totalAmount +
-                ", timeStamp=" + timeStamp +
-                ", state=" + state +
-                '}';
-    }
 }

@@ -14,23 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Cart {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
+public class Cart extends BaseEntity {
     @OneToOne
     private User user;
 
     @OneToMany
     List<CartItem> cartItemList;
 
-    @Override
-    public String toString() {
-        return "Cart{" +
-                "id=" + id +
-                ", user=" + user +
-                ", cartItemList=" + cartItemList +
-                '}';
-    }
 }

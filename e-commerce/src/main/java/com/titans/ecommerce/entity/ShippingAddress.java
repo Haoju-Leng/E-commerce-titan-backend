@@ -13,26 +13,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ShippingAddress implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class ShippingAddress extends BaseEntity implements Serializable {
     private int userId;
     private String address;
     private String city;
     private String state;
     private String zipcode;
 
-    @Override
-    public String toString() {
-        return "ShippingAddress{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipcode='" + zipcode + '\'' +
-                '}';
-    }
+
 }

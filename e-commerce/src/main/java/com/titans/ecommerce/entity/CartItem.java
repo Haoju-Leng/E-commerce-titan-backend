@@ -11,12 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class CartItem {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
+public class CartItem extends BaseEntity {
     @ManyToOne
     private Cart cart;
 
@@ -25,13 +20,4 @@ public class CartItem {
 
     private int quantity;
 
-    @Override
-    public String toString() {
-        return "CartItem{" +
-                "id=" + id +
-                ", cart=" + cart +
-                ", product=" + product +
-                ", quantity=" + quantity +
-                '}';
-    }
 }

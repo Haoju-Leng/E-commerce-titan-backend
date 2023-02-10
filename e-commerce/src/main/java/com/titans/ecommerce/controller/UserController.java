@@ -27,17 +27,17 @@ public class UserController {
                         + " is alive\n");
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    ResponseEntity<User> register(@RequestParam String username, @RequestParam String password) {
-        return ResponseEntity
-                .ok(userService
-                        .register(username, password));
-    }
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    ResponseEntity<User> login(@RequestParam String username, @RequestParam String password) {
-        return ResponseEntity
-                .ok(userService
-                        .login(username, password));
-    }
+//    @RequestMapping(value = "/register", method = RequestMethod.POST)
+//    ResponseEntity<User> register(@RequestParam String username, @RequestParam String password) {
+//        return ResponseEntity
+//                .ok(userService
+//                        .register(username, password));
+//    }
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    ResponseEntity<User> login(@RequestParam String username, @RequestParam String password) {
+//        return ResponseEntity
+//                .ok(userService
+//                        .login(username, password));
+//    }
 
 }

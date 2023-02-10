@@ -11,14 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class OrderDetail {
+public class TradeOrderDetail extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToOne
-    private Order order;
+    private TradeOrder tradeOrder;
 
     @ManyToOne
     private User seller;
@@ -30,15 +30,4 @@ public class OrderDetail {
 
     private double unitPrice;
 
-    @Override
-    public String toString() {
-        return "OrderDetail{" +
-                "id=" + id +
-                ", order=" + order +
-                ", seller=" + seller +
-                ", product=" + product +
-                ", quantity=" + quantity +
-                ", unitPrice=" + unitPrice +
-                '}';
-    }
 }

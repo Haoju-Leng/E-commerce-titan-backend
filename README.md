@@ -1,4 +1,18 @@
+# Docs
+
+## Database Schema
+
+https://docs.google.com/document/d/18axX7pOYaKnhBWIyrSuXaggTtqyFLPWoFtzR41PbCu4/edit
+
 # Task
+
+## Walkthrough
+
+Walkthrough1: user registers -> account info saved in the database -> user login -> server generates a token and returns it -> client receives the token and saves it
+
+Walkthrough2: user fills the product info form -> client sends a product creating request with the token -> product is saved to the database -> user tries to get info of the newly-created product
+
+## Subtask
 
 - Database schema design
 - Interface Documentation
