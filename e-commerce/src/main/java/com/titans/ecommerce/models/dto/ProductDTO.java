@@ -1,4 +1,4 @@
-package com.titans.ecommerce.dto;
+package com.titans.ecommerce.models.dto;
 
 import lombok.Data;
 

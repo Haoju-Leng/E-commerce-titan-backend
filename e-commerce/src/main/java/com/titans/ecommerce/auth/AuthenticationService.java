@@ -2,8 +2,8 @@ package com.titans.ecommerce.auth;
 
 
 import com.titans.ecommerce.config.JwtService;
-import com.titans.ecommerce.entity.Role;
-import com.titans.ecommerce.entity.User;
+import com.titans.ecommerce.models.entity.Role;
+import com.titans.ecommerce.models.entity.User;
 import com.titans.ecommerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

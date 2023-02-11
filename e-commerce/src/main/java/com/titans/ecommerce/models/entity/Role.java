@@ -1,4 +1,4 @@
-package com.titans.ecommerce.entity;
+package com.titans.ecommerce.models.entity;
 
 public enum Role {
     USER,

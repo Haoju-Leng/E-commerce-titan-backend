@@ -1,24 +1,22 @@
 package com.titans.ecommerce.controller;
 
-import com.titans.ecommerce.config.JwtService;
-import com.titans.ecommerce.entity.Product;
-import com.titans.ecommerce.entity.User;
+import com.titans.ecommerce.models.dto.ProductDTO;
+import com.titans.ecommerce.models.entity.Product;
+import com.titans.ecommerce.models.entity.User;
 import com.titans.ecommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
-@RequestMapping("/api/v1/product")
+@RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -26,14 +24,16 @@ public class ProductController {
 
     private final ProductService productService;
 
-    private final JwtService jwtService;
-
-    @GetMapping({"/", "/actuator/info"})
+    @GetMapping( "/actuator/info")
     ResponseEntity<String> info() {
         // Indicate the request succeeded and return the application
         // name.
         StringBuilder resp = new StringBuilder();
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
         resp
                 .append("Hello User! Your info:")
                 .append("\n")
@@ -56,10 +56,22 @@ public class ProductController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
 
+    @GetMapping("/")
+    public ResponseEntity<List<Product>> getProducts () {
+        List<Product> productList = productService.getProducts();
+        if (null != productList) {
+            logger.info("Product found: " + productList);
+            return ResponseEntity.ok(productList);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
-
-
+    @PostMapping("/")
+    public ResponseEntity<Product> addProduct (@RequestBody ProductDTO productDTO) {
+        return ResponseEntity
+                .ok(productService.addProduct(productDTO));
+    }
 }

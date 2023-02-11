@@ -1,6 +1,5 @@
 package com.titans.ecommerce.service;
 
-import com.titans.ecommerce.entity.User;
 import com.titans.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

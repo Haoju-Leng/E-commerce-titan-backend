@@ -1,6 +1,6 @@
 package com.titans.ecommerce.repository;
 
-import com.titans.ecommerce.entity.User;
+import com.titans.ecommerce.models.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

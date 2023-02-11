@@ -12,6 +12,18 @@ Walkthrough1: user registers -> account info saved in the database -> user login
 
 Walkthrough2: user fills the product info form -> client sends a product creating request with the token -> product is saved to the database -> user tries to get info of the newly-created product
 
+**Login and get the token**
+
+<img width="1077" alt="Screen Shot 2023-02-10 at 6 34 56 PM" src="https://user-images.githubusercontent.com/48000537/218227186-91869a66-944b-40e2-98aa-4dca5aafaed7.png">
+
+**Add a new product to the server**
+
+<img width="1097" alt="Screen Shot 2023-02-10 at 6 35 03 PM" src="https://user-images.githubusercontent.com/48000537/218227188-718ac760-9607-48f2-b64c-02d5e04e3790.png">
+
+**Query all the products**
+
+<img width="1072" alt="Screen Shot 2023-02-10 at 6 34 49 PM" src="https://user-images.githubusercontent.com/48000537/218227185-14239073-3657-4e43-82e9-7a78abe7bc71.png">
+
 ## Subtask
 
 - Database schema design
