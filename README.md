@@ -4,6 +4,14 @@
 
 https://docs.google.com/document/d/18axX7pOYaKnhBWIyrSuXaggTtqyFLPWoFtzR41PbCu4/edit
 
+# Pinned
+
+Authentication: by HTTP Header
+
+format: KEY: "Authorization", VALUE: "Bearer " + {token}
+
+base url: /api/v1
+
 # Task
 
 ## Walkthrough
@@ -21,6 +29,8 @@ The registration step has been omitted
 **Add a new product to the server**
 
 Another prodoct adding request has been omitted
+
+Don't forget the header!
 
 <img width="1097" alt="Screen Shot 2023-02-10 at 6 35 03 PM" src="https://user-images.githubusercontent.com/48000537/218227188-718ac760-9607-48f2-b64c-02d5e04e3790.png">
 
@@ -86,4 +96,5 @@ Another prodoct adding request has been omitted
 
 - Skeleton
 - Framework
+- Figma
 
