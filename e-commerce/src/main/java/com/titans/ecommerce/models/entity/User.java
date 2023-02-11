@@ -20,8 +20,8 @@ public class User extends BaseEntity implements UserDetails {
     @Column(unique = true)
     private String email; // should be @vanderbilt email
 
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String password;
 
 //    @OneToOne
@@ -33,8 +33,8 @@ public class User extends BaseEntity implements UserDetails {
     public String toString() {
         return "User{" +
                 "email='" + email + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';

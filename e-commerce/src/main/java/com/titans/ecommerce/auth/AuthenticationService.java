@@ -4,6 +4,7 @@ package com.titans.ecommerce.auth;
 import com.titans.ecommerce.config.JwtService;
 import com.titans.ecommerce.models.entity.Role;
 import com.titans.ecommerce.models.entity.User;
+import com.titans.ecommerce.models.vo.UserVO;
 import com.titans.ecommerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,22 +20,25 @@ public class AuthenticationService {
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
 
-  public AuthenticationResponse register(RegisterRequest request) {
+  public UserVO register(RegisterRequest request) {
     var user = User.builder()
-        .firstname(request.getFirstname())
-        .lastname(request.getLastname())
+        .firstName(request.getFirstName())
+        .lastName(request.getLastName())
         .email(request.getEmail())
         .password(passwordEncoder.encode(request.getPassword()))
         .role(Role.USER)
         .build();
     repository.save(user);
     var jwtToken = jwtService.generateToken(user);
-    return AuthenticationResponse.builder()
-        .token(jwtToken)
-        .build();
+    return UserVO.builder()
+            .token(jwtToken)
+            .lastName(user.getLastName())
+            .firstName(user.getFirstName())
+            .email(user.getEmail())
+            .build();
   }
 
-  public AuthenticationResponse authenticate(AuthenticationRequest request) {
+  public UserVO authenticate(AuthenticationRequest request) {
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
             request.getEmail(),
@@ -44,8 +48,11 @@ public class AuthenticationService {
     var user = repository.findByEmail(request.getEmail())
         .orElseThrow();
     var jwtToken = jwtService.generateToken(user);
-    return AuthenticationResponse.builder()
-        .token(jwtToken)
-        .build();
+    return UserVO.builder()
+            .token(jwtToken)
+            .lastName(user.getLastName())
+            .firstName(user.getFirstName())
+            .email(user.getEmail())
+            .build();
   }
 }
