@@ -14,9 +14,13 @@ Walkthrough2: user fills the product info form -> client sends a product creatin
 
 **Login and get the token**
 
+The registration step has been omitted
+
 <img width="1077" alt="Screen Shot 2023-02-10 at 6 34 56 PM" src="https://user-images.githubusercontent.com/48000537/218227186-91869a66-944b-40e2-98aa-4dca5aafaed7.png">
 
 **Add a new product to the server**
+
+Another prodoct adding request has been omitted
 
 <img width="1097" alt="Screen Shot 2023-02-10 at 6 35 03 PM" src="https://user-images.githubusercontent.com/48000537/218227188-718ac760-9607-48f2-b64c-02d5e04e3790.png">
 
