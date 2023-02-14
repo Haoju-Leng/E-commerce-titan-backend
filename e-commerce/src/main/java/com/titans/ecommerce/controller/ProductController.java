@@ -1,22 +1,28 @@
 package com.titans.ecommerce.controller;
 
 import com.titans.ecommerce.models.dto.ProductDTO;
+import com.titans.ecommerce.models.dto.ProductVO;
 import com.titans.ecommerce.models.entity.Product;
+import com.titans.ecommerce.models.entity.ProductFile;
 import com.titans.ecommerce.models.entity.User;
 import com.titans.ecommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.util.*;
 
 @Controller
-@RequestMapping("/api/v1/products")
+@RequestMapping("/api/v1/product")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -48,8 +54,8 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Product> getProductById (@PathVariable("id") Integer id) {
-        Product product = productService.getProductById(id);
+    public ResponseEntity<ProductVO> getProductById (@PathVariable("id") Integer id) {
+        ProductVO product = productService.getProductById(id);
         if (null != product) {
             logger.info("Product found: " + product);
             return ResponseEntity.ok(product);
@@ -59,8 +65,8 @@ public class ProductController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Product>> getProducts () {
-        List<Product> productList = productService.getProducts();
+    public ResponseEntity<List<ProductVO>> getProducts () {
+        List<ProductVO> productList = productService.getProducts();
         if (null != productList) {
             logger.info("Product found: " + productList);
             return ResponseEntity.ok(productList);
@@ -69,9 +75,40 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Product> addProduct (@RequestBody ProductDTO productDTO) {
+    @PostMapping(value = "/", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<ProductVO> addProduct (@RequestPart("productInfo") ProductDTO productDTO,
+                                                 @RequestPart(name = "image0", required = false) MultipartFile image0,
+                                                 @RequestPart(name = "image1", required = false) MultipartFile image1,
+                                                 @RequestPart(name = "image2", required = false) MultipartFile image2,
+                                                 @RequestPart(name = "image3", required = false) MultipartFile image3,
+                                                 @RequestPart(name = "image4", required = false) MultipartFile image4
+                                               ) {
+        MultipartFile[] images = {image0, image1, image2, image3, image4};
+
+        List<MultipartFile> imageList = Arrays.stream(images)
+                .filter(Objects::nonNull)
+                .toList();
+
         return ResponseEntity
-                .ok(productService.addProduct(productDTO));
+                .ok(productService
+                        .addProduct(productDTO, imageList));
+    }
+
+    @RequestMapping(value = "/file/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Resource> getProductImageById(@PathVariable("id") Integer id) {
+        ProductFile file = productService.getProductFile(id);
+
+        if (null == file) {
+            return ResponseEntity
+                    .notFound()
+                    .build();
+        } else {
+            ByteArrayResource resource = new ByteArrayResource(file.getData());
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .contentLength(resource.contentLength())
+                    .body(resource);
+        }
     }
 }

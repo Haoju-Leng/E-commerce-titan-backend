@@ -1,14 +1,21 @@
 package com.titans.ecommerce.service;
 
 import com.titans.ecommerce.models.dto.ProductDTO;
+import com.titans.ecommerce.models.dto.ProductVO;
+import com.titans.ecommerce.models.entity.BaseEntity;
 import com.titans.ecommerce.models.entity.Product;
+import com.titans.ecommerce.models.entity.ProductFile;
 import com.titans.ecommerce.models.entity.User;
+import com.titans.ecommerce.repository.ProductFileRepository;
 import com.titans.ecommerce.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -19,21 +26,52 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public List<Product> getProducts() {
-        return productRepository.findAll();
+    @Autowired
+    ProductFileRepository productFileRepository;
+
+    public List<ProductVO> getProducts() {
+        return convertProductsToProductVOs(productRepository.findAll());
     }
-    public Product getProductById(Integer id) {
-        return productRepository.findProductById(id);
+    public ProductVO getProductById(Integer id) {
+        return convertProductToProductVO(productRepository.findProductById(id));
     }
 
-    public Product addProduct(ProductDTO productDTO) {
+    @Transactional
+    public ProductVO addProduct(ProductDTO productDTO, List<MultipartFile> imageList) {
         Product product = new Product();
         BeanUtils.copyProperties(productDTO, product);
-        product.setProductName(product.getProductName());
         product.setSellerId(getUser().getId());
         product.setState(Product.State.forSale);
         product.setCreateTime(new Date());
-        return productRepository.save(product);
+        try {
+            product
+                    .setProductFileList(saveProductImages(imageList));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        product = productRepository.save(product);
+        return convertProductToProductVO(product);
+    }
+
+    // internal
+
+    public ProductFile getProductFile(Integer productFileId) {
+        return productFileRepository
+                .findById(productFileId)
+                .orElse(null);
+    }
+    private List<ProductFile> saveProductImages(List<MultipartFile> imageList) throws IOException {
+        return imageList
+                .stream()
+                .map(imageFile -> {
+                    try {
+                        return productFileRepository
+                                .save(new ProductFile(imageFile.getBytes()));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .toList();
     }
 
     private User getUser() {
@@ -41,6 +79,26 @@ public class ProductService {
                 .getContext()
                 .getAuthentication()
                 .getPrincipal();
+    }
+
+
+    private ProductVO convertProductToProductVO(Product product) {
+        ProductVO vo = new ProductVO();
+        BeanUtils
+                .copyProperties(product, vo);
+        List<Integer> productFileIdList = product
+                .getProductFileList()
+                .stream()
+                .map(BaseEntity::getId)
+                .toList();
+        vo.setProductFileIdList(productFileIdList);
+        return vo;
+    }
+    private List<ProductVO> convertProductsToProductVOs(List<Product> products) {
+        return products
+                .stream()
+                .map(this::convertProductToProductVO)
+                .toList();
     }
 
 }

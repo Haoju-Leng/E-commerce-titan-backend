@@ -6,15 +6,15 @@ import lombok.Data;
 public class ProductDTO {
     private String productCategory;
 
-    private String productDescription;
+    private String description;
 
-    private String productManufacturer;
+    private String manufacturer;
 
-    private String productName;
+    private String name;
 
-    private double productPrice;
+    private double price;
 
-    private String unitStock;
+    private Integer stock;
 
     private int sellerId;
 }

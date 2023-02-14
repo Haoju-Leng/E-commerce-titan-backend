@@ -2,6 +2,8 @@ package com.titans.ecommerce.models.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @Getter
 @Setter
@@ -12,17 +14,19 @@ public class Product extends BaseEntity{
 
     private String productCategory;
 
-    private String productDescription;
+    private String description;
 
-    private String productManufacturer;
+    private String manufacturer;
 
-    private String productName;
+    private String name;
 
-    private double productPrice;
+    private double price;
 
-    private String unitStock;
+    private Integer stock;
 
     private int sellerId;
+    @OneToMany
+    private List<ProductFile> productFileList;
 
     public enum State {forSale, inTransaction, soldOut}
     @Enumerated(EnumType.STRING)
