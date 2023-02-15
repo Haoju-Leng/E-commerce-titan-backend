@@ -7,9 +7,12 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 @Data
 public class ProductVO {
+
+    public Integer id;
     private String productCategory;
 
     private String description;
@@ -25,6 +28,8 @@ public class ProductVO {
     private int sellerId;
 
     private List<Integer> productFileIdList;
+
+    private Date createTime;
 
     public enum State {forSale, inTransaction, soldOut}
     @Enumerated(EnumType.STRING)

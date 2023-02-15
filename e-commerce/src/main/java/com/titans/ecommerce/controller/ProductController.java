@@ -76,7 +76,7 @@ public class ProductController {
     }
 
     @PostMapping(value = "/", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
-    public ResponseEntity<ProductVO> addProduct (@RequestPart("productInfo") ProductDTO productDTO,
+    public ResponseEntity<Integer> addProduct (@RequestPart("productInfo") ProductDTO productDTO,
                                                  @RequestPart(name = "image0", required = false) MultipartFile image0,
                                                  @RequestPart(name = "image1", required = false) MultipartFile image1,
                                                  @RequestPart(name = "image2", required = false) MultipartFile image2,
@@ -91,7 +91,8 @@ public class ProductController {
 
         return ResponseEntity
                 .ok(productService
-                        .addProduct(productDTO, imageList));
+                        .addProduct(productDTO, imageList)
+                        .getId());
     }
 
     @RequestMapping(value = "/file/{id}", method = RequestMethod.GET)
