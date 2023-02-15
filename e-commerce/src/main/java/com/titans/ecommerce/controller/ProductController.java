@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
-
-@Controller
+@CrossOrigin(origins = "*")
+@RestController
 @RequestMapping("/api/v1/product")
 @RequiredArgsConstructor
 public class ProductController {
