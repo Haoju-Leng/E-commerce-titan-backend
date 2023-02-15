@@ -76,7 +76,7 @@ public class ProductController {
     }
 
     @PostMapping(value = "/", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
-    public ResponseEntity<Integer> addProduct (@RequestPart("productInfo") ProductDTO productDTO,
+    public ResponseEntity<HashMap<String, Integer>> addProduct (@RequestPart("productInfo") ProductDTO productDTO,
                                                  @RequestPart(name = "image0", required = false) MultipartFile image0,
                                                  @RequestPart(name = "image1", required = false) MultipartFile image1,
                                                  @RequestPart(name = "image2", required = false) MultipartFile image2,
@@ -88,11 +88,12 @@ public class ProductController {
         List<MultipartFile> imageList = Arrays.stream(images)
                 .filter(Objects::nonNull)
                 .toList();
-
+        ProductVO newlyCreatedProduct = productService
+                .addProduct(productDTO, imageList);
+        HashMap<String, Integer> returnMap = new HashMap<>();
+        returnMap.put("id", newlyCreatedProduct.getId());
         return ResponseEntity
-                .ok(productService
-                        .addProduct(productDTO, imageList)
-                        .getId());
+                .ok(returnMap);
     }
 
     @RequestMapping(value = "/file/{id}", method = RequestMethod.GET)
