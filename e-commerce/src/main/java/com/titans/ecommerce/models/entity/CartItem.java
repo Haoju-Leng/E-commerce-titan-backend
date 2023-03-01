@@ -4,17 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class CartItem extends BaseEntity {
-    @ManyToOne
-    private Cart cart;
+    private Integer cartId;
 
-    @ManyToOne
-    private Product product;
+    private Integer productId;
 
     private int quantity;
 

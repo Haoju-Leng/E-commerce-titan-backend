@@ -5,8 +5,6 @@ import lombok.*;
 
 import java.util.List;
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -14,7 +12,7 @@ public class Cart extends BaseEntity {
     @OneToOne
     private User user;
 
-    @OneToMany
-    List<CartItem> cartItemList;
+    // @OneToMany
+    // List<CartItem> cartItemList;
 
 }

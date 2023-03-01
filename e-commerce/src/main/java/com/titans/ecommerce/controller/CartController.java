@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.titans.ecommerce.models.dto.CartDTO;
+import com.titans.ecommerce.models.vo.CartVO;
 import com.titans.ecommerce.service.CartService;
 
 import java.util.*;
@@ -24,5 +26,34 @@ public class CartController {
     private final Logger logger = LoggerFactory.getLogger(CartController.class);
 
     private final CartService cartService;
-    
+
+    @GetMapping("")
+    ResponseEntity<?> get(){
+        CartVO cartVO=cartService.getCart();
+        if(cartVO==null){
+            return ResponseEntity.notFound().build();
+        }else{
+            return ResponseEntity.ok(cartVO);
+        }
+    }
+
+    @PostMapping("/add")
+    ResponseEntity<?> add(@RequestBody CartDTO cartDTO){
+        CartVO cartVO=cartService.addCart(cartDTO);
+        if(cartVO==null){
+            return ResponseEntity.notFound().build();
+        }else{
+            return ResponseEntity.ok(cartVO);
+        }
+    }
+
+    @PutMapping("/edit/{id}")
+    ResponseEntity<?> edit(@PathVariable("id") Integer id, @RequestBody CartDTO cartDTO){
+        CartVO cartVO=cartService.editCart(id, cartDTO);
+        if(cartVO==null){
+            return ResponseEntity.notFound().build();
+        }else{
+            return ResponseEntity.ok(cartVO);
+        }
+    }
 }
