@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.titans.ecommerce.models.entity.CartItem;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CartItemRepository extends JpaRepository<CartItem,Integer>{
-    @Query("SELECT * FROM cartitem WHERE cart_id=:{cartId}")
-    List<CartItem> findByCartId(Integer cartId);
+
+    List<CartItem> findCartItemsByCartId(Integer cartId);
 }

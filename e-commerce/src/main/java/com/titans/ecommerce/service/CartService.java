@@ -38,7 +38,7 @@ public class CartService {
     }
 
     public CartVO getCart() {
-        return convertCartToCartVO(cartRepository.findByUserId(getUser().getId()));
+        return convertCartToCartVO(cartRepository.findCartByUserId(getUser().getId()));
     }
 
     public CartVO addCart(CartDTO cartDTO){
@@ -58,7 +58,7 @@ public class CartService {
 
     public CartVO editCart(Integer id, CartDTO cartDTO){
         Cart cartInDB=cartRepository.findById(id).get();
-        cartItemRepository.findByCartId(id).forEach(cartItemRepository::delete);
+        cartItemRepository.findCartItemsByCartId(id).forEach(cartItemRepository::delete);
         
         cartDTO
             .getItems()
@@ -80,7 +80,7 @@ public class CartService {
     } 
 
     CartVO convertCartToCartVO(Cart cart){
-        List<CartItemVO> items=cartItemRepository.findByCartId(cart.getId())
+        List<CartItemVO> items=cartItemRepository.findCartItemsByCartId(cart.getId())
             .stream()
             .map(this::convertCartItemToCartItemVO)
             .toList();
