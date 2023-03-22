@@ -58,7 +58,7 @@ public class CartService {
 
     public CartVO editCart(Integer id, CartDTO cartDTO){
         Cart cartInDB=cartRepository.findById(id).get();
-        cartItemRepository.findCartItemsByCartId(id).forEach(cartItemRepository::delete);
+        cartItemRepository.deleteAll(cartItemRepository.findCartItemsByCartId(id));
         
         cartDTO
             .getItems()
