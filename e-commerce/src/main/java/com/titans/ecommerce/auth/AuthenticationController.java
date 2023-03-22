@@ -20,6 +20,14 @@ public class AuthenticationController {
   ) {
     return ResponseEntity.ok(service.register(request));
   }
+
+  @PutMapping
+  public ResponseEntity<UserVO> edit(
+          @RequestBody RegisterRequest request
+  ) {
+    return ResponseEntity.ok(service.edit(request));
+  }
+
   @PostMapping("/login")
   public ResponseEntity<UserVO> authenticate(
       @RequestBody AuthenticationRequest request
