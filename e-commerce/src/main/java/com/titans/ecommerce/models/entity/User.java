@@ -24,6 +24,16 @@ public class User extends BaseEntity implements UserDetails {
     private String lastName;
     private String password;
 
+    private String address;
+
+    private String city;
+
+    private String state;
+
+    private String country;
+
+    private String zipcode;
+
 //    @OneToOne
 //    private Cart cart;
     @Enumerated(EnumType.STRING)
@@ -36,6 +46,11 @@ public class User extends BaseEntity implements UserDetails {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", zipcode='" + zipcode + '\'' +
                 ", role=" + role +
                 '}';
     }
