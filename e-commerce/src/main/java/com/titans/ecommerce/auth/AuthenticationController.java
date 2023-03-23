@@ -6,6 +6,8 @@ import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/user")
@@ -35,5 +37,22 @@ public class AuthenticationController {
     return ResponseEntity.ok(service.authenticate(request));
   }
 
+  @GetMapping("/verification")
+  public ResponseEntity<String> verify(@RequestParam("email") String email) {
+    service.sendVerificationCode(email);
+    return ResponseEntity.ok("success");
+  }
 
+  @PostMapping("/password")
+  public ResponseEntity<String> resetPassword(@RequestBody Map<String, String> input) {
+    String email = input.get("email");
+    String code = input.get("code");
+    boolean result = service.verifyVerificationCode(email, code);
+    if (result) {
+      service.setUserPassword(email, input.get("password"));
+      return ResponseEntity.ok("success");
+    } else {
+      return ResponseEntity.ok("code is not correct");
+    }
+  }
 }
