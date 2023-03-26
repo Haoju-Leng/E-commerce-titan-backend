@@ -4,6 +4,14 @@
 
 https://docs.google.com/document/d/18axX7pOYaKnhBWIyrSuXaggTtqyFLPWoFtzR41PbCu4/edit
 
+## APIs documentation
+
+https://docs.google.com/document/d/1uwkOYogwc-w-UiS-FdKanmqQ33rC1VOmyz_CwNd_lwg/edit?usp=sharing
+
+## TODO_tasks
+
+https://docs.google.com/document/d/11F2W7aWFXjI3yHpK9-wfeJ5Ri0Sdob5oi6ZN7Ozc-N4/edit?usp=sharing
+
 # Pinned
 
 Authentication: by HTTP Header
