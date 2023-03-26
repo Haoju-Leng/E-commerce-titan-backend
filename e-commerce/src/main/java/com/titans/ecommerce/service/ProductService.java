@@ -32,6 +32,10 @@ public class ProductService {
     public List<ProductVO> getProducts() {
         return convertProductsToProductVOs(productRepository.findAll());
     }
+
+    public List<ProductVO> getProductsByUser() {
+        return convertProductsToProductVOs(productRepository.findAllBySellerId(getUser().getId()));
+    }
     public ProductVO getProductById(Integer id) {
         return convertProductToProductVO(productRepository.findProductById(id));
     }
@@ -53,6 +57,24 @@ public class ProductService {
         return convertProductToProductVO(product);
     }
 
+    @Transactional
+    public ProductVO editProduct(Integer id, ProductDTO productDTO, List<MultipartFile> imageList) {
+        Product product = productRepository.findProductById(id);
+        BeanUtils.copyProperties(productDTO, product);
+        product.setSellerId(getUser().getId());
+        try {
+            product
+                    .setProductFileList(saveProductImages(imageList));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        product = productRepository.save(product);
+        return convertProductToProductVO(product);
+    }
+
+    public void deleteProduct(Integer id) {
+        productRepository.deleteById(id);
+    }
     // internal
 
     public ProductFile getProductFile(Integer productFileId) {

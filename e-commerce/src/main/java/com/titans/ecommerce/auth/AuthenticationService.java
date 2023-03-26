@@ -60,6 +60,23 @@ public class AuthenticationService {
             .build();
   }
 
+  public UserVO queryUser() {
+
+    Integer userId = getUser().getId();
+    User user = repository.findUserById(userId);
+
+    return UserVO.builder()
+            .lastName(user.getLastName())
+            .firstName(user.getFirstName())
+            .email(user.getEmail())
+            .address(user.getAddress())
+            .city(user.getCity())
+            .state(user.getState())
+            .country(user.getCountry())
+            .zipcode(user.getZipcode())
+            .build();
+  }
+
   public UserVO edit(RegisterRequest request) {
     Integer userId = getUser().getId();
     User user = repository.findUserById(userId);

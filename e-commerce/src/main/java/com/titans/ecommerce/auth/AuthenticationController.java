@@ -23,12 +23,19 @@ public class AuthenticationController {
     return ResponseEntity.ok(service.register(request));
   }
 
-  @PutMapping
-  public ResponseEntity<UserVO> edit(
+  @GetMapping("/profile")
+  public ResponseEntity<UserVO> queryProfile() {
+    return ResponseEntity.ok(service.queryUser());
+  }
+
+  @PutMapping("/profile")
+  public ResponseEntity<UserVO> editProfile(
           @RequestBody RegisterRequest request
   ) {
     return ResponseEntity.ok(service.edit(request));
   }
+
+
 
   @PostMapping("/login")
   public ResponseEntity<UserVO> authenticate(
