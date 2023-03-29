@@ -33,6 +33,9 @@ public class ProductService {
         return convertProductsToProductVOs(productRepository.findAll());
     }
 
+    public List<ProductVO> searchProducts(String name,String productCategory) {
+        return convertProductsToProductVOs(productRepository.findByNameContainingIgnoreCaseAndProductCategory(name, productCategory));
+    }
     public List<ProductVO> getProductsByUser() {
         return convertProductsToProductVOs(productRepository.findAllBySellerId(getUser().getId()));
     }

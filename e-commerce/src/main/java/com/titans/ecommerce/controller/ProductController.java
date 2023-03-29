@@ -5,6 +5,7 @@ import com.titans.ecommerce.models.dto.ProductVO;
 import com.titans.ecommerce.models.entity.Product;
 import com.titans.ecommerce.models.entity.ProductFile;
 import com.titans.ecommerce.models.entity.User;
+import com.titans.ecommerce.repository.ProductRepository;
 import com.titans.ecommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -29,6 +30,7 @@ public class ProductController {
     private final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     private final ProductService productService;
+
 
     @GetMapping( "/actuator/info")
     ResponseEntity<String> info() {
@@ -64,17 +66,28 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<ProductVO>> getAllProducts () {
-        List<ProductVO> productList = productService.getProducts();
-        if (null != productList) {
-            logger.info("Product found: " + productList);
-            return ResponseEntity.ok(productList);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        @GetMapping("/")
+        public ResponseEntity<List<ProductVO>> getAllProducts () {
+            List<ProductVO> productList = productService.getProducts();
+            if (null != productList) {
+                logger.info("Product found: " + productList);
+                return ResponseEntity.ok(productList);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }
-    }
 
+        @GetMapping("/search")
+        public ResponseEntity<List<ProductVO>> getProductsByNameAndCategory (@RequestParam("name") String name,
+                                                                             @RequestParam("productCategory") String productCategory) {
+            List<ProductVO> productList = productService.searchProducts(name, productCategory);
+            if (null != productList) {
+                logger.info("Product found: " + productList);
+                return ResponseEntity.ok(productList);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
 
     @GetMapping("/userAll")
     public ResponseEntity<List<ProductVO>> getUserAllProducts () {

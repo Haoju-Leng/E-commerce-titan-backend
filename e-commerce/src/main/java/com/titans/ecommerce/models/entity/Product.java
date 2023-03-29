@@ -25,7 +25,7 @@ public class Product extends BaseEntity{
     private Integer stock;
 
     private int sellerId;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<ProductFile> productFileList;
 
     public enum State {forSale, inTransaction, soldOut}
