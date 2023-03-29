@@ -64,6 +64,16 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/")
+    public ResponseEntity<List<ProductVO>> getAllProducts () {
+        List<ProductVO> productList = productService.getProducts();
+        if (null != productList) {
+            logger.info("Product found: " + productList);
+            return ResponseEntity.ok(productList);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 
     @GetMapping("/userAll")
