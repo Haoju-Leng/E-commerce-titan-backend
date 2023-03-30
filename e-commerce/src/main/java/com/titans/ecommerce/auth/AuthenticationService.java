@@ -38,6 +38,9 @@ public class AuthenticationService {
   }
 
   public UserVO register(RegisterRequest request) {
+    if (repository.findByEmail(request.getEmail()).isPresent()) {
+      throw new RuntimeException("Username already exists");
+    }
     var user = User.builder()
         .firstName(request.getFirstName())
         .lastName(request.getLastName())
