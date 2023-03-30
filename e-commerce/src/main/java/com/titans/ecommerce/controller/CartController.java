@@ -31,8 +31,8 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    ResponseEntity<?> add(@RequestBody CartDTO cartDTO){
-        CartVO cartVO=cartService.addCart(cartDTO);
+    ResponseEntity<?> add(@RequestParam(name = "productId") Integer productId){
+        CartVO cartVO=cartService.add(productId);
         if(cartVO==null){
             return ResponseEntity.notFound().build();
         }else{
@@ -40,9 +40,9 @@ public class CartController {
         }
     }
 
-    @PutMapping("/edit/{id}")
-    ResponseEntity<?> edit(@PathVariable("id") Integer id, @RequestBody CartDTO cartDTO){
-        CartVO cartVO=cartService.editCart(id, cartDTO);
+    @PutMapping("/remove")
+    ResponseEntity<?> edit(@RequestParam(name = "productId") Integer productId){
+        CartVO cartVO=cartService.edit(productId);
         if(cartVO==null){
             return ResponseEntity.notFound().build();
         }else{

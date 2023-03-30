@@ -41,32 +41,33 @@ public class CartService {
         return convertCartToCartVO(cartRepository.findCartByUserId(getUser().getId()));
     }
 
-    public CartVO addCart(CartDTO cartDTO){
-        Cart cart=new Cart();
+    public void create() {
+        Cart cart = new Cart();
         cart.setUser(getUser());
-        cart=cartRepository.save(cart);
-        final Integer cartId=cart.getId();
-        cartDTO
-            .getItems()
-            .stream()
-            .map(item->convertCartItemDTOToCartItem(item,cartId))
-            .map(cartItemRepository::save)
-            .toList();
-
-        return convertCartToCartVO(cart);
+        cart = cartRepository.save(cart);
+        final Integer cartId = cart.getId();
     }
 
-    public CartVO editCart(Integer id, CartDTO cartDTO){
-        Cart cartInDB=cartRepository.findById(id).get();
-        cartItemRepository.findCartItemsByCartId(id).forEach(cartItemRepository::delete);
-        
-        cartDTO
-            .getItems()
-            .stream()
-            .map(item->convertCartItemDTOToCartItem(item,id))
-            .map(cartItemRepository::save)
-            .toList();
+    public CartVO add(Integer productId){
+        Integer userId=getUser().getId();
+        Cart cartInDB=cartRepository.findCartByUserId(userId);
+        if(cartItemRepository.findCartItemByCartIdAndProductId(cartInDB.getId(),productId)!=null){
+            return convertCartToCartVO(cartInDB);
+        };
+        ProductVO product=productService.getProductById(productId);
+        CartItemDTO cartItemDTO=new CartItemDTO();
+        cartItemDTO.setProduct(product);
+        cartItemDTO.setQuantity(1);
+        CartItem cartItem=convertCartItemDTOToCartItem(cartItemDTO,cartInDB.getId());
+        cartItemRepository.save(cartItem);
+        return convertCartToCartVO(cartInDB);
+    }
 
+    public CartVO edit(Integer productId){
+        Integer userId=getUser().getId();
+        Cart cartInDB=cartRepository.findCartByUserId(userId);
+        CartItem cartItem=cartItemRepository.findCartItemByCartIdAndProductId(cartInDB.getId(),productId);
+        cartItemRepository.delete(cartItem);
         return convertCartToCartVO(cartInDB);
     }
 
