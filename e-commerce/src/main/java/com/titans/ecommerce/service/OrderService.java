@@ -73,21 +73,20 @@ public class OrderService {
         orderRepository.deleteById(orderId);
     }
 
-    public OrderVO approveOrderBySeller(Integer orderId) {
-        Order item = orderRepository.findOrderByOrderId(orderId);
+    public OrderVO approveOrderBySeller(Integer productId) {
+        Order item = orderRepository.findOrderByProductId(productId);
         item.setState(Order.State.Completed);
         orderRepository.save(item);
-
-        Integer productId = item.getProductId();
         productService.deleteProduct(productId);
 
         return convertOrderToOrderVO(item);
     }
 
-    public OrderVO denyOrderBySeller(Integer orderId) {
-        Order item = orderRepository.findOrderByOrderId(orderId);
+    public OrderVO denyOrderBySeller(Integer productId) {
+        Order item = orderRepository.findOrderByProductId(productId);
         item.setState(Order.State.Denied);
         orderRepository.save(item);
+
         return convertOrderToOrderVO(item);
     }
 

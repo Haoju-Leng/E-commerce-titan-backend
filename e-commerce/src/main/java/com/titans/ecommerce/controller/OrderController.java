@@ -53,8 +53,8 @@ public class OrderController {
     }
 
     @PostMapping("/approve")
-    ResponseEntity<?> approve(@RequestParam(name = "orderId") Integer orderId){
-        OrderVO orderVO = orderService.approveOrderBySeller(orderId);
+    ResponseEntity<?> approve(@RequestParam(name = "productId") Integer productId){
+        OrderVO orderVO = orderService.approveOrderBySeller(productId);
         if(orderVO == null){
             return ResponseEntity.notFound().build();
         }else{
@@ -63,8 +63,8 @@ public class OrderController {
     }
 
     @PostMapping("/deny")
-    ResponseEntity<?> deny(@RequestParam(name = "orderId") Integer orderId){
-        OrderVO orderVO = orderService.denyOrderBySeller(orderId);
+    ResponseEntity<?> deny(@RequestParam(name = "productId") Integer productId){
+        OrderVO orderVO = orderService.denyOrderBySeller(productId);
         if(orderVO == null){
             return ResponseEntity.notFound().build();
         }else{

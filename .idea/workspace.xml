@@ -10,12 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9bb83a3d-a19f-4b65-9d1b-ba9ad22b104e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/models/entity/TradeOrder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/models/entity/TradeOrderDetail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/OrderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,17 +44,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "spring.configuration.checksum": "c59bda8712cf0bdbaac638d497d3f39b",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;c59bda8712cf0bdbaac638d497d3f39b&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.titans.ecommerce.controller" />
@@ -88,6 +86,8 @@
       <workItem from="1677262518526" duration="139000" />
       <workItem from="1680197750488" duration="8000" />
       <workItem from="1680244312139" duration="463000" />
+      <workItem from="1680248594785" duration="42000" />
+      <workItem from="1680283954324" duration="1770000" />
     </task>
     <servers />
   </component>
