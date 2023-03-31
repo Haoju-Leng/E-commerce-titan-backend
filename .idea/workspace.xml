@@ -3,21 +3,40 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+    </configurations>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9bb83a3d-a19f-4b65-9d1b-ba9ad22b104e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/models/vo/CartItemVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/models/vo/CartItemVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/models/entity/TradeOrder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/models/entity/TradeOrderDetail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/repository/OrderRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2LkyQjEc3r1DqGczmQrYaKaUtU9" />
   <component name="ProjectLevelVcsManager">
@@ -27,25 +46,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/minghaozhao/Documents/1Vanderbilt/2023spring/cs5289/e-commerce-back-end&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "c59bda8712cf0bdbaac638d497d3f39b",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.titans.ecommerce.controller" />
+      <recent name="com.titans.ecommerce.service" />
+      <recent name="com.titans.ecommerce.models.vo" />
+      <recent name="com.titans.ecommerce.models.dto" />
+      <recent name="com.titans.ecommerce.models.entity" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ECommerceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="e-commerce" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.titans.ecommerce.ECommerceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -57,6 +86,8 @@
       <workItem from="1677225080085" duration="360000" />
       <workItem from="1677225741766" duration="242000" />
       <workItem from="1677262518526" duration="139000" />
+      <workItem from="1680197750488" duration="8000" />
+      <workItem from="1680244312139" duration="463000" />
     </task>
     <servers />
   </component>
