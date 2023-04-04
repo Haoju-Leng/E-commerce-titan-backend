@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -48,8 +49,17 @@ public class ProductService {
 
     public HashMap<String, Object> searchProducts(String name,String productCategory,Integer page, Integer size) {
         Pageable firstPage = PageRequest.of(page, size);
-        List<Product> products = productRepository.findByNameContainingIgnoreCaseAndProductCategory(name, productCategory);
-        List<Product> pagedProducts = productRepository.findByNameContainingIgnoreCaseAndProductCategory(name, productCategory, firstPage);
+        List<Product> products = new ArrayList<>();
+        List<Product> pagedProducts = new ArrayList<>();
+        if (null == productCategory || productCategory.equals("")){
+            products = productRepository.findByNameContainingIgnoreCase(name);
+            pagedProducts = productRepository.findByNameContainingIgnoreCase(name, firstPage);
+
+        }else{
+            products = productRepository.findByNameContainingIgnoreCaseAndProductCategory(name, productCategory);
+            pagedProducts = productRepository.findByNameContainingIgnoreCaseAndProductCategory(name, productCategory, firstPage);
+        }
+
         HashMap<String, Object> result = new HashMap<>();
         result.put("page", products.size() / size + 1);
         result.put("size", products.size());
