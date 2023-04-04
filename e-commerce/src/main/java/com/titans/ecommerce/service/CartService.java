@@ -3,6 +3,7 @@ package com.titans.ecommerce.service;
 import java.util.Date;
 import java.util.List;
 
+import com.titans.ecommerce.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +31,8 @@ public class CartService {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    UserRepository userRepository;
     private User getUser() {
         return (User) SecurityContextHolder
                 .getContext()
@@ -41,8 +44,12 @@ public class CartService {
         return convertCartToCartVO(cartRepository.findCartByUserId(getUser().getId()));
     }
 
-    public int create(User user) {
+    public int create(Integer userId) {
         Cart cart = new Cart();
+        User user=userRepository.findUserById(userId);
+        if(user==null){
+            throw new RuntimeException();
+        }
         cart.setUser(user);
         cart = cartRepository.save(cart);
         return cart.getId();
