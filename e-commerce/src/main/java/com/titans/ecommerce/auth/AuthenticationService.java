@@ -75,11 +75,20 @@ public class AuthenticationService {
             .build();
   }
 
+  public UserVO queryUserById(Integer id) {
+    User user = repository.findUserById(id);
+
+    return convertUserToUserVO(user);
+  }
   public UserVO queryUser() {
 
     Integer userId = getUser().getId();
     User user = repository.findUserById(userId);
 
+    return convertUserToUserVO(user);
+  }
+
+  UserVO convertUserToUserVO(User user) {
     return UserVO.builder()
             .lastName(user.getLastName())
             .firstName(user.getFirstName())

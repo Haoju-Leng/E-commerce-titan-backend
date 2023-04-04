@@ -34,6 +34,11 @@ public class AuthenticationController {
 
     }
 
+    @GetMapping("/{id}}")
+    public ResponseEntity<UserVO> queryUser(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(service.queryUserById(id));
+    }
+
     @GetMapping("/profile")
     public ResponseEntity<UserVO> queryProfile() {
         return ResponseEntity.ok(service.queryUser());
