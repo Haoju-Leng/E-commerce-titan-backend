@@ -6,6 +6,7 @@ import com.titans.ecommerce.models.entity.Role;
 import com.titans.ecommerce.models.entity.User;
 import com.titans.ecommerce.models.vo.UserVO;
 import com.titans.ecommerce.repository.UserRepository;
+import com.titans.ecommerce.service.CartService;
 import com.titans.ecommerce.utils.MailUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -23,16 +24,20 @@ public class AuthenticationService {
   private final UserRepository repository;
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
+
+  private final CartService cartService;
+
   private final AuthenticationManager authenticationManager;
 
   private final Jedis jedis = new Jedis("redis://localhost:6379");
 
   private final MailUtil mailUtil;
 
-  public AuthenticationService(UserRepository repository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager, MailUtil mailUtil) {
+  public AuthenticationService(UserRepository repository, PasswordEncoder passwordEncoder, JwtService jwtService, CartService cartService, AuthenticationManager authenticationManager, MailUtil mailUtil) {
     this.repository = repository;
     this.passwordEncoder = passwordEncoder;
     this.jwtService = jwtService;
+    this.cartService = cartService;
     this.authenticationManager = authenticationManager;
     this.mailUtil = mailUtil;
   }
@@ -48,7 +53,9 @@ public class AuthenticationService {
         .password(passwordEncoder.encode(request.getPassword()))
         .role(Role.USER)
         .build();
-    repository.save(user);
+    User addedUser = repository.save(user);
+    Integer id = addedUser.getId();
+    cartService.create(id);
     var jwtToken = jwtService.generateToken(user);
     return UserVO.builder()
             .token(jwtToken)

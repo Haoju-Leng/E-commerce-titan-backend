@@ -26,7 +26,6 @@ public class AuthenticationController {
     ) {
         try {
             UserVO userVO = service.register(request);
-            cartService.create();
             return ResponseEntity.ok(userVO);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
