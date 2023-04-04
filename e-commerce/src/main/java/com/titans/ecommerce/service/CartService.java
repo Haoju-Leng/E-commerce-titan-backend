@@ -41,11 +41,11 @@ public class CartService {
         return convertCartToCartVO(cartRepository.findCartByUserId(getUser().getId()));
     }
 
-    public void create() {
+    public int create(User user) {
         Cart cart = new Cart();
-        cart.setUser(getUser());
+        cart.setUser(user);
         cart = cartRepository.save(cart);
-        final Integer cartId = cart.getId();
+        return cart.getId();
     }
 
     public CartVO add(Integer productId){
