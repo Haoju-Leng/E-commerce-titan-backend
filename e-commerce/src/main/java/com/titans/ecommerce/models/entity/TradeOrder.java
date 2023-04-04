@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Order extends BaseEntity{
+public class TradeOrder extends BaseEntity{
 
     private Integer orderId;
     private Integer productId;
