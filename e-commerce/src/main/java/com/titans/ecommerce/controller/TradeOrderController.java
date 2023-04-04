@@ -1,7 +1,7 @@
 package com.titans.ecommerce.controller;
 
-import com.titans.ecommerce.models.vo.OrderVO;
-import com.titans.ecommerce.service.OrderService;
+import com.titans.ecommerce.models.vo.TradeOrderVO;
+import com.titans.ecommerce.service.TradeOrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
@@ -13,69 +13,69 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/order")
-public class OrderController {
-    private final Logger logger = LoggerFactory.getLogger(OrderController.class);
+public class TradeOrderController {
+    private final Logger logger = LoggerFactory.getLogger(TradeOrderController.class);
 
-    private final OrderService orderService;
+    private final TradeOrderService tradeOrderService;
 
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+    public TradeOrderController(TradeOrderService tradeOrderService) {
+        this.tradeOrderService = tradeOrderService;
     }
 
     @GetMapping("/getBuyingOrders")
     ResponseEntity<?> getBuyingOrders(){
-        List<OrderVO> orderVOs = orderService.findBuyingOrdersByUser();
-        if(orderVOs.isEmpty()){
+        List<TradeOrderVO> tradeOrderVOS = tradeOrderService.findBuyingOrdersByUser();
+        if(tradeOrderVOS.isEmpty()){
             return ResponseEntity.notFound().build();
         }else{
-            return ResponseEntity.ok(orderVOs);
+            return ResponseEntity.ok(tradeOrderVOS);
         }
     }
 
     @GetMapping("/getSellingOrders")
     ResponseEntity<?> getSellingOrders(){
-        List<OrderVO> orderVOs = orderService.findSellingOrdersByUser();
-        if(orderVOs.isEmpty()){
+        List<TradeOrderVO> tradeOrderVOS = tradeOrderService.findSellingOrdersByUser();
+        if(tradeOrderVOS.isEmpty()){
             return ResponseEntity.notFound().build();
         }else{
-            return ResponseEntity.ok(orderVOs);
+            return ResponseEntity.ok(tradeOrderVOS);
         }
     }
 
     @PostMapping("/create")
     ResponseEntity<?> create(@RequestParam(name = "productId") Integer productId, @RequestParam(name = "deliveryMethod") String method){
-        OrderVO orderVO = orderService.createOrder(productId, method);
-        if(orderVO == null){
+        TradeOrderVO tradeOrderVO = tradeOrderService.createOrder(productId, method);
+        if(tradeOrderVO == null){
             return ResponseEntity.notFound().build();
         }else{
-            return ResponseEntity.ok(orderVO);
+            return ResponseEntity.ok(tradeOrderVO);
         }
     }
 
     @PostMapping("/approve")
     ResponseEntity<?> approve(@RequestParam(name = "productId") Integer productId){
-        OrderVO orderVO = orderService.approveOrderBySeller(productId);
-        if(orderVO == null){
+        TradeOrderVO tradeOrderVO = tradeOrderService.approveOrderBySeller(productId);
+        if(tradeOrderVO == null){
             return ResponseEntity.notFound().build();
         }else{
-            return ResponseEntity.ok(orderVO);
+            return ResponseEntity.ok(tradeOrderVO);
         }
     }
 
     @PostMapping("/deny")
     ResponseEntity<?> deny(@RequestParam(name = "productId") Integer productId){
-        OrderVO orderVO = orderService.denyOrderBySeller(productId);
-        if(orderVO == null){
+        TradeOrderVO tradeOrderVO = tradeOrderService.denyOrderBySeller(productId);
+        if(tradeOrderVO == null){
             return ResponseEntity.notFound().build();
         }else{
-            return ResponseEntity.ok(orderVO);
+            return ResponseEntity.ok(tradeOrderVO);
         }
     }
 
     @PutMapping("/remove")
     ResponseEntity<?> remove(@RequestParam(name = "orderId") Integer orderId){
         try {
-            orderService.deleteProcessingOrder(orderId);
+            tradeOrderService.deleteProcessingOrder(orderId);
             return ResponseEntity.ok("Order successfully deleted");
         } catch(Exception e) {
             return ResponseEntity.ok("Unable to delete order");
@@ -84,11 +84,11 @@ public class OrderController {
 
     @GetMapping("/getOrderInfo")
     ResponseEntity<?> getOrderInfoByProductId(@RequestParam(name = "productId") Integer productId){
-        OrderVO orderVO = orderService.findOrderProductId(productId);
-        if(orderVO == null){
+        TradeOrderVO tradeOrderVO = tradeOrderService.findOrderProductId(productId);
+        if(tradeOrderVO == null){
             return ResponseEntity.notFound().build();
         }else{
-            return ResponseEntity.ok(orderVO);
+            return ResponseEntity.ok(tradeOrderVO);
         }
     }
 }
