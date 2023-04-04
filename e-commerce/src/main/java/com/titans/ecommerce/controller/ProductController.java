@@ -67,23 +67,25 @@ public class ProductController {
     }
 
         @GetMapping("/")
-        public ResponseEntity<List<ProductVO>> getAllProducts () {
-            List<ProductVO> productList = productService.getProducts();
-            if (null != productList) {
-                logger.info("Product found: " + productList);
-                return ResponseEntity.ok(productList);
+        public ResponseEntity<HashMap<String, Object>> getAllProducts (@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+            HashMap<String, Object> result = productService.getProducts(page, size);
+            if (null != result) {
+                logger.info("Product found");
+                return ResponseEntity.ok(result);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }
 
         @GetMapping("/search")
-        public ResponseEntity<List<ProductVO>> getProductsByNameAndCategory (@RequestParam("name") String name,
-                                                                             @RequestParam("productCategory") String productCategory) {
-            List<ProductVO> productList = productService.searchProducts(name, productCategory);
-            if (null != productList) {
-                logger.info("Product found: " + productList);
-                return ResponseEntity.ok(productList);
+        public ResponseEntity<HashMap<String, Object>> getProductsByNameAndCategory (@RequestParam("name") String name,
+                                                                             @RequestParam("productCategory") String productCategory,
+                                                                             @RequestParam(defaultValue = "0") Integer page,
+                                                                             @RequestParam(defaultValue = "10") Integer size) {
+            HashMap<String, Object> result = productService.searchProducts(name, productCategory, page, size);
+            if (null != result) {
+                logger.info("Product found");
+                return ResponseEntity.ok(result);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
