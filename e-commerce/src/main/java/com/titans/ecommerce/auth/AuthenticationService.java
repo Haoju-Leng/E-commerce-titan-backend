@@ -52,6 +52,11 @@ public class AuthenticationService {
         .email(request.getEmail())
         .password(passwordEncoder.encode(request.getPassword()))
         .role(Role.USER)
+            .address(request.getAddress())
+            .city(request.getCity())
+            .state(request.getState())
+            .country(request.getCountry())
+            .zipcode(request.getZipcode())
         .build();
     User addedUser = repository.save(user);
     Integer id = addedUser.getId();
