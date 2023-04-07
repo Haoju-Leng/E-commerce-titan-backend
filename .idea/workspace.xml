@@ -10,10 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9bb83a3d-a19f-4b65-9d1b-ba9ad22b104e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/controller/TradeOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/controller/TradeOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/TradeOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/TradeOrderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +21,13 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -88,6 +94,7 @@
       <workItem from="1680244312139" duration="463000" />
       <workItem from="1680248594785" duration="42000" />
       <workItem from="1680283954324" duration="1770000" />
+      <workItem from="1680896444031" duration="1041000" />
     </task>
     <servers />
   </component>

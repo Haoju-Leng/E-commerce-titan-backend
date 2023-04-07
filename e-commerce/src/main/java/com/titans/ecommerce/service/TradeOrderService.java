@@ -66,6 +66,7 @@ public class TradeOrderService {
         tradeOrder.setDeliveryMethod(deliveryMethod);
 
         tradeOrder = tradeOrderRepository.save(tradeOrder);
+        tradeOrder.setOrderId(tradeOrder.getOrderId());
         return convertOrderToOrderVO(tradeOrder);
     }
 
