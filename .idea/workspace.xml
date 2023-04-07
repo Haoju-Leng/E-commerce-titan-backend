@@ -10,8 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9bb83a3d-a19f-4b65-9d1b-ba9ad22b104e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/controller/TradeOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/controller/TradeOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/models/entity/TradeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/models/entity/TradeOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/models/vo/TradeOrderVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/models/vo/TradeOrderVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/repository/TradeOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/repository/TradeOrderRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/TradeOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/TradeOrderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,6 +96,7 @@
       <workItem from="1680248594785" duration="42000" />
       <workItem from="1680283954324" duration="1770000" />
       <workItem from="1680896444031" duration="1041000" />
+      <workItem from="1680902079208" duration="134000" />
     </task>
     <servers />
   </component>

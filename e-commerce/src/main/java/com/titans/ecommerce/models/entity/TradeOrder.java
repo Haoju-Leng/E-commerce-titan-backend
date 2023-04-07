@@ -12,8 +12,6 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 public class TradeOrder extends BaseEntity{
-
-    private Integer orderId;
     private Integer productId;
     private Integer sellerId;
 

@@ -13,8 +13,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TradeOrderVO {
-
-    private Integer orderId;
     private Integer productId;
     private Integer sellerId;
     private Integer buyerId;

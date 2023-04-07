@@ -66,7 +66,6 @@ public class TradeOrderService {
         tradeOrder.setDeliveryMethod(deliveryMethod);
 
         tradeOrder = tradeOrderRepository.save(tradeOrder);
-        tradeOrder.setOrderId(tradeOrder.getOrderId());
         return convertOrderToOrderVO(tradeOrder);
     }
 
@@ -94,10 +93,9 @@ public class TradeOrderService {
     TradeOrderVO convertOrderToOrderVO(TradeOrder tradeOrder){
         if (tradeOrder == null)
             return null;
-        TradeOrder item = tradeOrderRepository.findOrderByOrderId(tradeOrder.getId());
+        TradeOrder item = tradeOrderRepository.findOrderById(tradeOrder.getId());
         return TradeOrderVO
                 .builder()
-                .orderId(item.getOrderId())
                 .productId(item.getProductId())
                 .sellerId(item.getSellerId())
                 .state(item.getState())

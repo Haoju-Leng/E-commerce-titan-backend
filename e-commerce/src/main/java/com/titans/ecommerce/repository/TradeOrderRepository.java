@@ -13,7 +13,7 @@ public interface TradeOrderRepository extends JpaRepository<TradeOrder, Integer>
 
     List<TradeOrder> findOrdersByBuyerId(Integer buyerId);
 
-    TradeOrder findOrderByOrderId(Integer orderId);
+    TradeOrder findOrderById(Integer id);
     TradeOrder findOrderByProductId(Integer productId);
 
 }
