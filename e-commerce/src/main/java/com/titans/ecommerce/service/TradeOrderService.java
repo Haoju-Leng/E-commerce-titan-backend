@@ -1,9 +1,11 @@
 package com.titans.ecommerce.service;
 
 import com.titans.ecommerce.models.dto.ProductVO;
+import com.titans.ecommerce.models.entity.Product;
 import com.titans.ecommerce.models.entity.TradeOrder;
 import com.titans.ecommerce.models.entity.User;
 import com.titans.ecommerce.models.vo.TradeOrderVO;
+import com.titans.ecommerce.repository.ProductRepository;
 import com.titans.ecommerce.repository.TradeOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -57,6 +59,11 @@ public class TradeOrderService {
     public TradeOrderVO createOrder(Integer productId, String deliveryMethod) {
         TradeOrder tradeOrder = new TradeOrder();
         ProductVO productVO = productService.getProductById(productId);
+        // Update product state to inTransaction
+        Product product = productService.getProductInfoById(productId);
+        product.setState(Product.State.inTransaction);
+        productService.productRepository.save(product);
+
         tradeOrder.setBuyerId(getUser().getId());
         tradeOrder.setState(TradeOrder.State.Processing);
         tradeOrder.setQuantity(productVO.getStock());
@@ -77,7 +84,11 @@ public class TradeOrderService {
         TradeOrder item = tradeOrderRepository.findOrderByProductId(productId);
         item.setState(TradeOrder.State.Completed);
         tradeOrderRepository.save(item);
-        productService.deleteProduct(productId);
+
+        // Update product state to soldOut
+        Product product = productService.getProductInfoById(productId);
+        product.setState(Product.State.soldOut);
+        productService.productRepository.save(product);
 
         return convertOrderToOrderVO(item);
     }
@@ -86,6 +97,11 @@ public class TradeOrderService {
         TradeOrder item = tradeOrderRepository.findOrderByProductId(productId);
         item.setState(TradeOrder.State.Denied);
         tradeOrderRepository.save(item);
+
+        // Update product state to forSale
+        Product product = productService.getProductInfoById(productId);
+        product.setState(Product.State.forSale);
+        productService.productRepository.save(product);
 
         return convertOrderToOrderVO(item);
     }

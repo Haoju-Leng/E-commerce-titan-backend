@@ -73,6 +73,10 @@ public class ProductService {
         return convertProductToProductVO(productRepository.findProductById(id));
     }
 
+    public Product getProductInfoById(Integer id) {
+        return productRepository.findProductById(id);
+    }
+
     @Transactional
     public ProductVO addProduct(ProductDTO productDTO, List<MultipartFile> imageList) {
         Product product = new Product();
