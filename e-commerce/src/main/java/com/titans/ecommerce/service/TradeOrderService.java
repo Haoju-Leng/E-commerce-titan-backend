@@ -1,11 +1,11 @@
 package com.titans.ecommerce.service;
 
+import com.titans.ecommerce.auth.AuthenticationService;
 import com.titans.ecommerce.models.dto.ProductVO;
 import com.titans.ecommerce.models.entity.Product;
 import com.titans.ecommerce.models.entity.TradeOrder;
 import com.titans.ecommerce.models.entity.User;
 import com.titans.ecommerce.models.vo.TradeOrderVO;
-import com.titans.ecommerce.repository.ProductRepository;
 import com.titans.ecommerce.repository.TradeOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +22,8 @@ public class TradeOrderService {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    AuthenticationService authenticationService;
 
     private User getUser() {
         return (User) SecurityContextHolder
@@ -71,8 +73,10 @@ public class TradeOrderService {
         tradeOrder.setSellerId(productVO.getSellerId());
         tradeOrder.setUnitPrice(productVO.getPrice());
         tradeOrder.setDeliveryMethod(deliveryMethod);
-
         tradeOrder = tradeOrderRepository.save(tradeOrder);
+
+        // Send notification email
+        authenticationService.sendOrderCreatedNotification(productVO.getSellerId(), getUser().getId(), productVO.getName(), tradeOrder.getId());
         return convertOrderToOrderVO(tradeOrder);
     }
 
@@ -83,6 +87,8 @@ public class TradeOrderService {
     public TradeOrderVO approveOrderBySeller(Integer productId) {
         TradeOrder item = tradeOrderRepository.findOrderByProductId(productId);
         item.setState(TradeOrder.State.Completed);
+        Integer sellerId = item.getSellerId();
+        Integer buyerId = item.getBuyerId();
         tradeOrderRepository.save(item);
 
         // Update product state to soldOut
@@ -90,12 +96,17 @@ public class TradeOrderService {
         product.setState(Product.State.soldOut);
         productService.productRepository.save(product);
 
+        // Send notification email
+        authenticationService.sendOrderApprovalNotification(sellerId, buyerId, product.getName(), item.getId());
+
         return convertOrderToOrderVO(item);
     }
 
     public TradeOrderVO denyOrderBySeller(Integer productId) {
         TradeOrder item = tradeOrderRepository.findOrderByProductId(productId);
         item.setState(TradeOrder.State.Denied);
+        Integer sellerId = item.getSellerId();
+        Integer buyerId = item.getBuyerId();
         tradeOrderRepository.save(item);
 
         // Update product state to forSale
@@ -103,6 +114,8 @@ public class TradeOrderService {
         product.setState(Product.State.forSale);
         productService.productRepository.save(product);
 
+        // Send notification email
+        authenticationService.sendOrderDeniallNotification(sellerId, buyerId, product.getName(), item.getId());
         return convertOrderToOrderVO(item);
     }
 

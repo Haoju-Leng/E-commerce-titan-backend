@@ -8,9 +8,6 @@ import com.titans.ecommerce.models.vo.UserVO;
 import com.titans.ecommerce.repository.UserRepository;
 import com.titans.ecommerce.service.CartService;
 import com.titans.ecommerce.utils.MailUtil;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -163,6 +160,41 @@ public class AuthenticationService {
   }
     return false;
   }
+
+
+  public void sendOrderCreatedNotification(Integer sellerId, Integer buyerId, String product, Integer orderId) {
+    UserVO sellerVO = this.queryUserById(sellerId);
+    UserVO buyerVO = this.queryUserById(buyerId);
+    try {
+      mailUtil.sendOrderCreatedNotificationEmail(sellerVO.getEmail(), product, orderId);
+      mailUtil.sendOrderCreatedNotificationEmail(buyerVO.getEmail(), product, orderId);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void sendOrderApprovalNotification(Integer sellerId, Integer buyerId, String product, Integer orderId) {
+    UserVO sellerVO = this.queryUserById(sellerId);
+    UserVO buyerVO = this.queryUserById(buyerId);
+    try {
+      mailUtil.sendOrderApprovalNotificationEmail(sellerVO.getEmail(), product, orderId);
+      mailUtil.sendOrderApprovalNotificationEmail(buyerVO.getEmail(), product, orderId);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void sendOrderDeniallNotification(Integer sellerId, Integer buyerId, String product, Integer orderId) {
+    UserVO sellerVO = this.queryUserById(sellerId);
+    UserVO buyerVO = this.queryUserById(buyerId);
+    try {
+      mailUtil.sendOrderDenialNotificationEmail(sellerVO.getEmail(), product, orderId);
+      mailUtil.sendOrderDenialNotificationEmail(buyerVO.getEmail(), product, orderId);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
 
   public UserVO setUserPassword(String email, String password) {
     User user = repository.findByEmail(email).orElse(null);

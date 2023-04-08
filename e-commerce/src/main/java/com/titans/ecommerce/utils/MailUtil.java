@@ -1,5 +1,6 @@
 package com.titans.ecommerce.utils;
 
+import com.titans.ecommerce.models.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -41,4 +42,38 @@ public class MailUtil {
 
         mailSender.send(message);
     }
+
+    public void sendOrderCreatedNotificationEmail(String recipient, String product, Integer orderId) throws MailException {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(recipient);
+        msg.setSubject("Confirmation from E-Commerce Titans: Order Created");
+        String text = "Dear user, \n\tThe order of the product: " + product + " is created. Your order id is " + orderId + ". " +
+                "\n\t Thanks for using E-Commerce Titans!";
+        msg.setText(text);
+        mailSender.send(msg);
+    }
+
+    public void sendOrderApprovalNotificationEmail(String recipient, String product, Integer orderId) throws MailException {
+        SimpleMailMessage buyerMsg = new SimpleMailMessage();
+        buyerMsg.setFrom(from);
+        buyerMsg.setTo(recipient);
+        buyerMsg.setSubject("Notificatoin from E-Commerce Titans: Order Approved!");
+        String text = "Dear user, \n\tThe order of the product: " + product + " is approved by the seller. The order id is " + orderId + ". " +
+                "\n\t Thanks for using E-Commerce Titans!";
+        buyerMsg.setText(text);
+        mailSender.send(buyerMsg);
+    }
+
+    public void sendOrderDenialNotificationEmail(String recipient, String product, Integer orderId) throws MailException {
+        SimpleMailMessage buyerMsg = new SimpleMailMessage();
+        buyerMsg.setFrom(from);
+        buyerMsg.setTo(recipient);
+        buyerMsg.setSubject("Notificatoin from E-Commerce Titans: Order Denied!");
+        String text = "Dear user, \n\tThe order of the product: " + product + " is denied by the seller. The order id is " + orderId + ". " +
+                "\n\t Thanks for using E-Commerce Titans!";
+        buyerMsg.setText(text);
+        mailSender.send(buyerMsg);
+    }
+
 }
