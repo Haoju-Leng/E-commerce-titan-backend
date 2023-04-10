@@ -131,6 +131,7 @@ public class TradeOrderService {
                 .unitPrice(item.getUnitPrice())
                 .buyerId(item.getBuyerId())
                 .quantity(item.getQuantity())
+                .deliveryMethod(item.getDeliveryMethod())
                 .build();
     }
 
