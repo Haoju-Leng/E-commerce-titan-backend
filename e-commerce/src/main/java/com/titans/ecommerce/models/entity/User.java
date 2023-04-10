@@ -26,6 +26,8 @@ public class User extends BaseEntity implements UserDetails {
 
     private String address;
 
+    private String phone;
+
     private String city;
 
     private String state;
@@ -47,6 +49,7 @@ public class User extends BaseEntity implements UserDetails {
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +

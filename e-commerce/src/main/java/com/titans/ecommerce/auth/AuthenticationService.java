@@ -53,6 +53,7 @@ public class AuthenticationService {
             .city(request.getCity())
             .state(request.getState())
             .country(request.getCountry())
+            .phone(request.getPhone())
             .zipcode(request.getZipcode())
         .build();
     User addedUser = repository.save(user);
@@ -69,6 +70,7 @@ public class AuthenticationService {
             .state(user.getState())
             .country(user.getCountry())
             .zipcode(user.getZipcode())
+            .phone(user.getPhone())
             .build();
   }
 
@@ -93,6 +95,7 @@ public class AuthenticationService {
             .address(user.getAddress())
             .city(user.getCity())
             .state(user.getState())
+            .phone(user.getPhone())
             .country(user.getCountry())
             .zipcode(user.getZipcode())
             .build();
@@ -114,6 +117,7 @@ public class AuthenticationService {
             .email(user.getEmail())
             .address(user.getAddress())
             .city(user.getCity())
+            .phone(user.getPhone())
             .state(user.getState())
             .country(user.getCountry())
             .zipcode(user.getZipcode())
@@ -137,6 +141,7 @@ public class AuthenticationService {
             .email(user.getEmail())
             .address(user.getAddress())
             .city(user.getCity())
+            .phone(user.getPhone())
             .state(user.getState())
             .country(user.getCountry())
             .zipcode(user.getZipcode())
@@ -209,6 +214,7 @@ public class AuthenticationService {
               .email(user.getEmail())
               .address(user.getAddress())
               .city(user.getCity())
+              .phone(user.getPhone())
               .state(user.getState())
               .country(user.getCountry())
               .zipcode(user.getZipcode())
