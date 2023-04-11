@@ -109,6 +109,7 @@ public class AuthenticationService {
     user.setAddress(request.getAddress());
     user.setZipcode(request.getZipcode());
     user.setCountry(request.getCountry());
+    user.setPhone(request.getPhone());
     repository.save(user);
 
     return UserVO.builder()
