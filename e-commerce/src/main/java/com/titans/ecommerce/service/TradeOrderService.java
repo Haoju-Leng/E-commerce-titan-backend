@@ -6,6 +6,7 @@ import com.titans.ecommerce.models.entity.Product;
 import com.titans.ecommerce.models.entity.TradeOrder;
 import com.titans.ecommerce.models.entity.User;
 import com.titans.ecommerce.models.vo.TradeOrderVO;
+import com.titans.ecommerce.repository.ProductRepository;
 import com.titans.ecommerce.repository.TradeOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +25,8 @@ public class TradeOrderService {
 
     @Autowired
     AuthenticationService authenticationService;
+    @Autowired
+    ProductRepository productRepository;
 
     private User getUser() {
         return (User) SecurityContextHolder
@@ -64,7 +67,7 @@ public class TradeOrderService {
         // Update product state to inTransaction
         Product product = productService.getProductInfoById(productId);
         product.setState(Product.State.inTransaction);
-        productService.productRepository.save(product);
+        productRepository.save(product);
 
         tradeOrder.setBuyerId(getUser().getId());
         tradeOrder.setState(TradeOrder.State.Processing);
@@ -94,7 +97,7 @@ public class TradeOrderService {
         // Update product state to soldOut
         Product product = productService.getProductInfoById(productId);
         product.setState(Product.State.soldOut);
-        productService.productRepository.save(product);
+        productRepository.save(product);
 
         // Send notification email
         authenticationService.sendOrderApprovalNotification(sellerId, buyerId, product.getName(), item.getId());
@@ -112,7 +115,7 @@ public class TradeOrderService {
         // Update product state to forSale
         Product product = productService.getProductInfoById(productId);
         product.setState(Product.State.forSale);
-        productService.productRepository.save(product);
+        productRepository.save(product);
 
         // Send notification email
         authenticationService.sendOrderDeniallNotification(sellerId, buyerId, product.getName(), item.getId());

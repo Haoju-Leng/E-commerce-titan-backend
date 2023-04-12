@@ -10,7 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9bb83a3d-a19f-4b65-9d1b-ba9ad22b104e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/TradeOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/e-commerce/src/main/java/com/titans/ecommerce/service/TradeOrderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,6 +98,7 @@
       <workItem from="1680916404677" duration="4249000" />
       <workItem from="1680921572059" duration="113000" />
       <workItem from="1681156522454" duration="81000" />
+      <workItem from="1681258167156" duration="93000" />
     </task>
     <servers />
   </component>
