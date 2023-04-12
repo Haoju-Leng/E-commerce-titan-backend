@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -55,6 +56,7 @@ public class TradeOrderController {
 //    }
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody OrderProductsWrapper productsWrapper) {
+        List<TradeOrderVO> orderList = new ArrayList<>();
         for (OrderProductInfo productInfo : productsWrapper.getProductsInfo()) {
             Integer productId = productInfo.getProductId();
             String method = productInfo.getMethod();
@@ -64,12 +66,12 @@ public class TradeOrderController {
             if (tradeOrderVO == null) {
                 return ResponseEntity.notFound().build();
             } else {
-                return ResponseEntity.ok(tradeOrderVO);
+                orderList.add(tradeOrderVO);
             }
         }
 
         // Return an appropriate response
-        return ResponseEntity.ok("Orders are created");
+        return ResponseEntity.ok(orderList);
     }
 
     @PostMapping("/approve")
