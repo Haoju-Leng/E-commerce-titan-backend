@@ -2,7 +2,10 @@ package com.titans.ecommerce.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
+import com.titans.ecommerce.models.entity.Product;
+import com.titans.ecommerce.repository.ProductRepository;
 import com.titans.ecommerce.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,10 @@ public class CartService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ProductRepository productRepository;
+
     private User getUser() {
         return (User) SecurityContextHolder
                 .getContext()
@@ -78,7 +85,6 @@ public class CartService {
         return convertCartToCartVO(cartInDB);
     }
 
-
     CartItem convertCartItemDTOToCartItem(CartItemDTO cartItemDTO, Integer cartId){
         CartItem cartItem=new CartItem();
         cartItem.setCartId(cartId);
@@ -91,6 +97,7 @@ public class CartService {
         List<CartItemVO> items=cartItemRepository.findCartItemsByCartId(cart.getId())
             .stream()
             .map(this::convertCartItemToCartItemVO)
+            .filter(Objects::nonNull)
             .toList();
         return CartVO
             .builder()
@@ -100,6 +107,14 @@ public class CartService {
     }
 
     CartItemVO convertCartItemToCartItemVO(CartItem cartItem){
+        Product productInDB=productRepository.findProductById(cartItem.getProductId());
+        if(productInDB==null){
+            cartItemRepository.delete(cartItem);
+            return null;
+        }
+        if(!productInDB.getState().equals(Product.State.forSale)){
+            return null;
+        }
         ProductVO products= productService.getProductById(cartItem.getProductId());
         return CartItemVO
             .builder()
